@@ -4,6 +4,7 @@
     "style": "markdown"
   },
   "include": [
-    "html/**/*.{html}"
+    "index.html",
+    "html/**/*.html"
   ]
 }
