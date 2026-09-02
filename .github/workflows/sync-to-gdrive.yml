@@ -62,7 +62,6 @@ jobs:
               scopes=['https://www.googleapis.com/auth/drive']
           )
           service = build('drive', 'v3', credentials=creds)
-          folder_id = os.environ['GDRIVE_FOLDER_ID']
 
           # ローカルの生成ファイルと、対象のDriveファイルIDの対応付け
           targets = [
