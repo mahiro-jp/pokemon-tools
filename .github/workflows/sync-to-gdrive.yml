@@ -38,11 +38,15 @@ jobs:
         run: |
           pip install google-api-python-client google-auth
 
-      # 3. 各ファイルをGoogleドライブへ自動作成・上書き同期
+      # 3. 指定したファイルIDへ直接上書き
       - name: Upload and Sync to Google Drive
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+          ID_CSS: ${{ secrets.GDRIVE_FILE_ID_CSS }}
+          ID_DATA: ${{ secrets.GDRIVE_FILE_ID_DATA }}
+          ID_DOCS: ${{ secrets.GDRIVE_FILE_ID_DOCS }}
+          ID_HTML: ${{ secrets.GDRIVE_FILE_ID_HTML }}
+          ID_JS: ${{ secrets.GDRIVE_FILE_ID_JS }}
         run: |
           python - << 'EOF'
           import os
@@ -60,35 +64,30 @@ jobs:
           service = build('drive', 'v3', credentials=creds)
           folder_id = os.environ['GDRIVE_FOLDER_ID']
 
-          # 同期対象のファイル一覧（ローカル生成ファイル名 : ドライブ上のファイル名）
-          files_to_sync = {
-              'output-css.txt': 'repomix-css.txt',
-              'output-data.txt': 'repomix-data.txt',
-              'output-docs.txt': 'repomix-docs.txt',
-              'output-html.txt': 'repomix-html.txt',
-              'output-js.txt': 'repomix-js.txt'
-          }
+          # ローカルの生成ファイルと、対象のDriveファイルIDの対応付け
+          targets = [
+              ('output-css.txt', os.environ.get('ID_CSS'), 'repomix-css.txt'),
+              ('output-data.txt', os.environ.get('ID_DATA'), 'repomix-data.txt'),
+              ('output-docs.txt', os.environ.get('ID_DOCS'), 'repomix-docs.txt'),
+              ('output-html.txt', os.environ.get('ID_HTML'), 'repomix-html.txt'),
+              ('output-js.txt', os.environ.get('ID_JS'), 'repomix-js.txt'),
+          ]
 
-          for local_file, drive_name in files_to_sync.items():
+          for local_file, file_id, label in targets:
+              if not file_id:
+                  print(f"Skip {label}: File ID not configured.")
+                  continue
               if not os.path.exists(local_file):
-                  print(f"Skip: {local_file} does not exist.")
+                  print(f"Skip {label}: Local file {local_file} not found.")
                   continue
 
-              # Googleドライブ側の同名ファイルを検索
-              query = f"'{folder_id}' in parents and name = '{drive_name}' and trashed = false"
-              results = service.files().list(q=query, fields="files(id, name)").execute()
-              items = results.get('files', [])
-
+              print(f"Updating {label} (ID: {file_id})...")
               media = MediaFileUpload(local_file, mimetype='text/plain', resumable=True)
-
-              if items:
-                  # 既存ファイルがある場合は上書き（File IDを維持）
-                  file_id = items[0]['id']
-                  updated = service.files().update(fileId=file_id, media_body=media).execute()
-                  print(f"Updated: {drive_name} (ID: {updated.get('id')})")
-              else:
-                  # 新規作成
-                  meta = {'name': drive_name, 'parents': [folder_id]}
-                  created = service.files().create(body=meta, media_body=media, fields='id').execute()
-                  print(f"Created: {drive_name} (ID: {created.get('id')})")
+              
+              # updateを実行
+              updated = service.files().update(
+                  fileId=file_id,
+                  media_body=media
+              ).execute()
+              print(f"Success: Updated {label} (Size: {os.path.getsize(local_file)} bytes)")
           EOF
