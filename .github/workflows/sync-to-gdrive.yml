@@ -1,0 +1,94 @@
+name: Repomix Multi-Sync to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # GitHubのWeb画面から手動実行可能
+
+jobs:
+  repomix-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 1. 各設定ファイルごとにRepomixを実行して分割出力
+      - name: Run Repomix for all modules
+        run: |
+          npx repomix --config repomix-configs/css.json
+          npx repomix --config repomix-configs/data.json
+          npx repomix --config repomix-configs/docs.json
+          npx repomix --config repomix-configs/html.json
+          npx repomix --config repomix-configs/js.json
+
+      # 2. アップロード用ライブラリのインストール
+      - name: Install Google API Client
+        run: |
+          pip install google-api-python-client google-auth
+
+      # 3. 各ファイルをGoogleドライブへ自動作成・上書き同期
+      - name: Upload and Sync to Google Drive
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: |
+          python - << 'EOF'
+          import os
+          import json
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+          from googleapiclient.http import MediaFileUpload
+
+          # 認証設定
+          sa_info = json.loads(os.environ['GCP_SA_KEY'])
+          creds = service_account.Credentials.from_service_account_info(
+              sa_info,
+              scopes=['https://www.googleapis.com/auth/drive']
+          )
+          service = build('drive', 'v3', credentials=creds)
+          folder_id = os.environ['GDRIVE_FOLDER_ID']
+
+          # 同期対象のファイル一覧（ローカル生成ファイル名 : ドライブ上のファイル名）
+          files_to_sync = {
+              'output-css.txt': 'repomix-css.txt',
+              'output-data.txt': 'repomix-data.txt',
+              'output-docs.txt': 'repomix-docs.txt',
+              'output-html.txt': 'repomix-html.txt',
+              'output-js.txt': 'repomix-js.txt'
+          }
+
+          for local_file, drive_name in files_to_sync.items():
+              if not os.path.exists(local_file):
+                  print(f"Skip: {local_file} does not exist.")
+                  continue
+
+              # Googleドライブ側の同名ファイルを検索
+              query = f"'{folder_id}' in parents and name = '{drive_name}' and trashed = false"
+              results = service.files().list(q=query, fields="files(id, name)").execute()
+              items = results.get('files', [])
+
+              media = MediaFileUpload(local_file, mimetype='text/plain', resumable=True)
+
+              if items:
+                  # 既存ファイルがある場合は上書き（File IDを維持）
+                  file_id = items[0]['id']
+                  updated = service.files().update(fileId=file_id, media_body=media).execute()
+                  print(f"Updated: {drive_name} (ID: {updated.get('id')})")
+              else:
+                  # 新規作成
+                  meta = {'name': drive_name, 'parents': [folder_id]}
+                  created = service.files().create(body=meta, media_body=media, fields='id').execute()
+                  print(f"Created: {drive_name} (ID: {created.get('id')})")
+          EOF

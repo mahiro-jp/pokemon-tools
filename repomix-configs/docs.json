@@ -1,0 +1,10 @@
+{
+  "output": {
+    "filePath": "output-docs.txt",
+    "style": "markdown"
+  },
+  "include": [
+    "README.md",
+    "docs/**/*.md"
+  ]
+}

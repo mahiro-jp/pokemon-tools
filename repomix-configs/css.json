@@ -1,0 +1,9 @@
+{
+  "output": {
+    "filePath": "output-css.txt",
+    "style": "markdown"
+  },
+  "include": [
+    "css/**/*.{css}"
+  ]
+}

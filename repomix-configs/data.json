@@ -1,0 +1,9 @@
+{
+  "output": {
+    "filePath": "output-data.txt",
+    "style": "markdown"
+  },
+  "include": [
+    "data/**/*"
+  ]
+}
