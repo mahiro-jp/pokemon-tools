@@ -31,6 +31,7 @@ jobs:
           npx repomix --config repomix-configs/data.json
           npx repomix --config repomix-configs/docs.json
           npx repomix --config repomix-configs/html.json
+          npx repomix --config repomix-configs/images.json
           npx repomix --config repomix-configs/js.json
 
       # 2. アップロード用ライブラリのインストール
@@ -46,6 +47,7 @@ jobs:
           ID_DATA: ${{ secrets.GDRIVE_FILE_ID_DATA }}
           ID_DOCS: ${{ secrets.GDRIVE_FILE_ID_DOCS }}
           ID_HTML: ${{ secrets.GDRIVE_FILE_ID_HTML }}
+          ID_IMAGES: ${{ secrets.GDRIVE_FILE_ID_IMAGES }}
           ID_JS: ${{ secrets.GDRIVE_FILE_ID_JS }}
         run: |
           python - << 'EOF'
@@ -69,6 +71,7 @@ jobs:
               ('output-data.txt', os.environ.get('ID_DATA'), 'repomix-data.txt'),
               ('output-docs.txt', os.environ.get('ID_DOCS'), 'repomix-docs.txt'),
               ('output-html.txt', os.environ.get('ID_HTML'), 'repomix-html.txt'),
+              ('output-images.txt', os.environ.get('ID_IMAGES'), 'repomix-images.txt'),
               ('output-js.txt', os.environ.get('ID_JS'), 'repomix-js.txt'),
           ]
 

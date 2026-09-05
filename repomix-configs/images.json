@@ -1,0 +1,9 @@
+{
+  "output": {
+    "filePath": "output-images.txt",
+    "style": "markdown"
+  },
+  "include": [
+    "sprite.svg"
+  ]
+}
