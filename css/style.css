@@ -226,13 +226,13 @@ footer {
 }
 
 /* ダークモード時のトグルボタン内のアイコン表示制御 */
-body.dark-mode .icon-sun {
+.dark-mode .icon-sun {
     display: inline;
 }
 body .icon-sun {
     display: none;
 }
-body.dark-mode .icon-moon {
+.dark-mode .icon-moon {
     display: none;
 }
 body .icon-moon {
