@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポケモンツール</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDarkMode = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
     <script src="js/main.js" defer></script>
 </head>
 <body>
