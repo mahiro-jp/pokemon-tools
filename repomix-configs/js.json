@@ -4,6 +4,7 @@
     "style": "markdown"
   },
   "include": [
-    "js/**/*.js"
+    "js/**/*.js",
+    "sw.js"
   ]
 }

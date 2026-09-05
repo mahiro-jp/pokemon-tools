@@ -5,6 +5,7 @@
   },
   "include": [
     "README.md",
+    "manifest.json",
     "docs/**/*.md"
   ]
 }
