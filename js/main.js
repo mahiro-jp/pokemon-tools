@@ -1,7 +1,7 @@
 const toggleBtn = document.getElementById('dark-mode-toggle');
 const btnText = toggleBtn.querySelector('span');
 
-// システム設定やローカルストレージの優先読み込み
+// システム設定やローカルストレージの読込
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
