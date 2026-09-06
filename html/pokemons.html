@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポケモン登録 - ポケモンツール</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDarkMode = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+        if (isDarkMode) {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+    <script src="js/main.js" defer></script>
+
+    <!-- PWA用のマニフェスト定義 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e3350d">
+
+    <!-- iOS (Safari) 向けのインストール設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ポケツール">
+    <link rel="apple-touch-icon" href="../images/icon-192.png">
+</head>
+<body>
+
+    <header>
+        <div class="header-container justify-between">
+            <a href="index.html" class="header-back-link">
+                <svg class="icon-back" viewBox="0 0 24 24">
+                    <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+                </svg>
+                <span>戻る</span>
+            </a>
+            <div class="header-title-group">
+                <svg class="header-logo" viewBox="0 0 24 24">
+                    <use href="../images/sprite.svg#logo"></use>
+                </svg>
+                <h1>ポケモン登録</h1>
+            </div>
+            <div style="width: 56px;"></div> <!-- 左右バランス用スペース -->
+        </div>
+    </header>
+
+    <main class="registration-main">
+        <!-- 検索・ポケモン名入力エリア -->
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" id="pokemon-name-input" placeholder="ポケモン名を入力... (例: リザードン)" list="pokemon-suggestions">
+                <datalist id="pokemon-suggestions">
+                    <option value="リザードン">
+                    <option value="ピカチュウ">
+                    <option value="ドラパルト">
+                    <option value="ハバタクカミ">
+                    <option value="カイリュー">
+                    <option value="サーフゴー">
+                    <option value="ウーラオス">
+                    <option value="パオジアン">
+                </datalist>
+                <button type="button" class="btn-primary" onclick="alert('検索ボタンがクリックされました（モック表示）');">検索</button>
+            </div>
+        </section>
+
+        <!-- 2カラムレイアウト -->
+        <div class="dashboard-grid">
+            
+            <!-- 左カラム: 基本情報・画像 -->
+            <div class="dashboard-col left-col">
+                <div class="card registration-card">
+                    <h2 class="card-section-title">基本情報</h2>
+                    
+                    <!-- 画像プレースホルダー -->
+                    <div class="pokemon-image-placeholder">
+                        <svg class="image-icon" viewBox="0 0 24 24">
+                            <use href="../images/sprite.svg#logo"></use>
+                        </svg>
+                        <span class="image-text">No Image</span>
+                    </div>
+
+                    <div class="form-group-row">
+                        <span class="form-label-inline">タイプ:</span>
+                        <div class="type-badges">
+                            <span class="badge badge-fire">ほのお</span>
+                            <span class="badge badge-flying">ひこう</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pokemon-nature">性格</label>
+                        <select id="pokemon-nature" class="form-select">
+                            <option value="まじめ" selected>まじめ (無補正)</option>
+                            <option value="いじっぱり">いじっぱり (攻撃↑ 特攻↓)</option>
+                            <option value="ひかえめ">ひかえめ (特攻↑ 攻撃↓)</option>
+                            <option value="ようき">ようき (素早さ↑ 特攻↓)</option>
+                            <option value="おくびょう">おくびょう (素早さ↑ 攻撃↓)</option>
+                            <option value="わんぱく">わんぱく (防御↑ 特攻↓)</option>
+                            <option value="ずぶとい">ずぶとい (防御↑ 攻撃↓)</option>
+                            <option value="しんちょう">しんちょう (特防↑ 特攻↓)</option>
+                            <option value="おだやか">おだやか (特防↑ 攻撃↓)</option>
+                            <!-- 他の主要な性格をダミーとして配置 -->
+                            <option value="さみしがり">さみしがり (攻撃↑ 防御↓)</option>
+                            <option value="やんちゃ">やんちゃ (攻撃↑ 特防↓)</option>
+                            <option value="おっとり">おっとり (特攻↑ 防御↓)</option>
+                            <option value="うっかりや">うっかりや (特攻↑ 特防↓)</option>
+                            <option value="のうてんき">のうてんき (防御↑ 特防↓)</option>
+                            <option value="おとなしい">おとなしい (特防↑ 防御↓)</option>
+                            <option value="せっかち">せっかち (素早さ↑ 防御↓)</option>
+                            <option value="ようき">ようき (素早さ↑ 特攻↓)</option>
+                            <option value="ゆうかん">ゆうかん (攻撃↑ 素早さ↓)</option>
+                            <option value="のんき">のんき (防御↑ 素早さ↓)</option>
+                            <option value="れいせい">れいせい (特攻↑ 素早さ↓)</option>
+                            <option value="なまいき">なまいき (特防↑ 素早さ↓)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pokemon-ability">特性</label>
+                        <select id="pokemon-ability" class="form-select">
+                            <option value="">特性を選択...</option>
+                            <option value="もうか" selected>もうか</option>
+                            <option value="サンパワー">サンパワー</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pokemon-item">持ち物</label>
+                        <select id="pokemon-item" class="form-select">
+                            <option value="">持ち物を選択...</option>
+                            <option value="きあいのタスキ">きあいのタスキ</option>
+                            <option value="こだわりハチマキ">こだわりハチマキ</option>
+                            <option value="こだわりメガネ" selected>こだわりメガネ</option>
+                            <option value="こだわりスカーフ">こだわりスカーフ</option>
+                            <option value="とつげきチョッキ">とつげきチョッキ</option>
+                            <option value="いのちのたま">いのちのたま</option>
+                            <option value="たべのこし">たべのこし</option>
+                            <option value="オボンのみ">オボンのみ</option>
+                            <option value="ラムのみ">ラムのみ</option>
+                            <option value="じゃくてんほけん">じゃくてんほけん</option>
+                            <option value="おんみょえがさ">おんみょえがさ</option>
+                            <option value="ブーストエナジー">ブーストエナジー</option>
+                            <option value="ゴツゴツメット">ゴツゴツメット</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右カラム: 能力ポイントと実数値 -->
+            <div class="dashboard-col right-col">
+                <div class="card registration-card">
+                    <h2 class="card-section-title">能力ポイントと実数値 (Lv.50)</h2>
+                    
+                    <div class="status-table-container">
+                        <table class="status-table">
+                            <thead>
+                                <tr>
+                                    <th>ステータス</th>
+                                    <th>種族値</th>
+                                    <th class="th-center">能力ポイント</th>
+                                    <th></th>
+                                    <th>実数値</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- HP -->
+                                <tr>
+                                    <td class="status-name">HP</td>
+                                    <td class="status-base">100</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real highlight-value">175</td>
+                                </tr>
+                                <!-- 攻撃 -->
+                                <tr>
+                                    <td class="status-name">攻撃</td>
+                                    <td class="status-base">90</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real">110</td>
+                                </tr>
+                                <!-- 防御 -->
+                                <tr>
+                                    <td class="status-name">防御</td>
+                                    <td class="status-base">80</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real">100</td>
+                                </tr>
+                                <!-- 特攻 -->
+                                <tr>
+                                    <td class="status-name">特攻</td>
+                                    <td class="status-base">110</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real">130</td>
+                                </tr>
+                                <!-- 特防 -->
+                                <tr>
+                                    <td class="status-name">特防</td>
+                                    <td class="status-base">90</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real">110</td>
+                                </tr>
+                                <!-- 素早さ -->
+                                <tr>
+                                    <td class="status-name">素早さ</td>
+                                    <td class="status-base">60</td>
+                                    <td class="status-ap-cell">
+                                        <div class="ap-spinner">
+                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <input type="number" class="ap-input" value="0" min="0" max="32">
+                                            <button type="button" class="btn-ap-adjust">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="ap-presets">
+                                        <button type="button" class="btn-preset">0</button>
+                                        <button type="button" class="btn-preset">32</button>
+                                    </td>
+                                    <td class="status-real">80</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="ap-summary-box">
+                        <span class="ap-summary-label">残り能力ポイント:</span>
+                        <span class="ap-summary-value highlight-value">66 / 66</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 下段: 技構成エリア -->
+        <section class="moves-section">
+            <div class="card registration-card">
+                <h2 class="card-section-title">技構成</h2>
+                
+                <div class="moves-grid">
+                    <!-- 技1 -->
+                    <div class="move-row">
+                        <div class="move-select-wrapper">
+                            <label for="move-1" class="move-label">技1</label>
+                            <select id="move-1" class="form-select">
+                                <option value="">技を選択...</option>
+                                <option value="かえんほうしゃ" selected>かえんほうしゃ</option>
+                                <option value="りゅうせいぐん">りゅうせいぐん</option>
+                                <option value="エアスラッシュ">エアスラッシュ</option>
+                                <option value="おにび">おにび</option>
+                                <option value="10まんボルト">10まんボルト</option>
+                                <option value="ハイドロポンプ">ハイドロポンプ</option>
+                                <option value="じしん">じしん</option>
+                                <option value="インファイト">インファイト</option>
+                                <option value="とんぼがえり">とんぼがえり</option>
+                                <option value="つるぎのまい">つるぎのまい</option>
+                            </select>
+                        </div>
+                        <div class="move-meta">
+                            <span class="badge badge-fire">ほのお</span>
+                            <span class="move-power">威力: <strong class="power-val">90</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- 技2 -->
+                    <div class="move-row">
+                        <div class="move-select-wrapper">
+                            <label for="move-2" class="move-label">技2</label>
+                            <select id="move-2" class="form-select">
+                                <option value="" selected>技を選択...</option>
+                                <option value="かえんほうしゃ">かえんほうしゃ</option>
+                                <option value="りゅうせいぐん">りゅうせいぐん</option>
+                                <option value="エアスラッシュ">エアスラッシュ</option>
+                                <option value="おにび">おにび</option>
+                                <option value="10まんボルト">10まんボルト</option>
+                                <option value="ハイドロポンプ">ハイドロポンプ</option>
+                                <option value="じしん">じしん</option>
+                                <option value="インファイト">インファイト</option>
+                                <option value="とんぼがえり">とんぼがえり</option>
+                                <option value="つるぎのまい">つるぎのまい</option>
+                            </select>
+                        </div>
+                        <div class="move-meta">
+                            <span class="badge badge-none">--</span>
+                            <span class="move-power">威力: <span class="power-val">--</span></span>
+                        </div>
+                    </div>
+
+                    <!-- 技3 -->
+                    <div class="move-row">
+                        <div class="move-select-wrapper">
+                            <label for="move-3" class="move-label">技3</label>
+                            <select id="move-3" class="form-select">
+                                <option value="" selected>技を選択...</option>
+                                <option value="かえんほうしゃ">かえんほうしゃ</option>
+                                <option value="りゅうせいぐん">りゅうせいぐん</option>
+                                <option value="エアスラッシュ">エアスラッシュ</option>
+                                <option value="おにび">おにび</option>
+                                <option value="10まんボルト">10まんボルト</option>
+                                <option value="ハイドロポンプ">ハイドロポンプ</option>
+                                <option value="じしん">じしん</option>
+                                <option value="インファイト">インファイト</option>
+                                <option value="とんぼがえり">とんぼがえり</option>
+                                <option value="つるぎのまい">つるぎのまい</option>
+                            </select>
+                        </div>
+                        <div class="move-meta">
+                            <span class="badge badge-none">--</span>
+                            <span class="move-power">威力: <span class="power-val">--</span></span>
+                        </div>
+                    </div>
+
+                    <!-- 技4 -->
+                    <div class="move-row">
+                        <div class="move-select-wrapper">
+                            <label for="move-4" class="move-label">技4</label>
+                            <select id="move-4" class="form-select">
+                                <option value="" selected>技を選択...</option>
+                                <option value="かえんほうしゃ">かえんほうしゃ</option>
+                                <option value="りゅうせいぐん">りゅうせいぐん</option>
+                                <option value="エアスラッシュ">エアスラッシュ</option>
+                                <option value="おにび">おにび</option>
+                                <option value="10まんボルト">10まんボルト</option>
+                                <option value="ハイドロポンプ">ハイドロポンプ</option>
+                                <option value="じしん">じしん</option>
+                                <option value="インファイト">インファイト</option>
+                                <option value="とんぼがえり">とんぼがえり</option>
+                                <option value="つるぎのまい">つるぎのまい</option>
+                            </select>
+                        </div>
+                        <div class="move-meta">
+                            <span class="badge badge-none">--</span>
+                            <span class="move-power">威力: <span class="power-val">--</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 登録・削除アクション -->
+        <div class="action-row">
+            <button type="button" class="btn-danger" onclick="alert('削除ボタンがクリックされました（モック表示）');">削除</button>
+            <button type="button" class="btn-success btn-large" onclick="alert('保存ボタンがクリックされました（モック表示）');">保存する</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <button class="btn-toggle" id="dark-mode-toggle">
+                <!-- 月アイコン -->
+                <svg class="icon-moon" viewBox="0 0 24 24">
+                    <use href="../images/sprite.svg#icon-moon"></use>
+                </svg>
+                <!-- 太陽アイコン -->
+                <svg class="icon-sun" viewBox="0 0 24 24">
+                    <use href="../images/sprite.svg#icon-sun"></use>
+                </svg>
+                <span>ダークモード</span>
+            </button>
+        </div>
+    </footer>
+
+</body>
+</html>
