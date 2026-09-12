@@ -15,6 +15,7 @@
         }
     </script>
     <script src="js/main.js" defer></script>
+    <script type="module" src="../js/components/move-slot.js"></script>
 
     <!-- PWA用のマニフェスト定義 -->
     <link rel="manifest" href="manifest.json">
@@ -101,7 +102,6 @@
                             <option value="ずぶとい">ずぶとい (防御↑ 攻撃↓)</option>
                             <option value="しんちょう">しんちょう (特防↑ 特攻↓)</option>
                             <option value="おだやか">おだやか (特防↑ 攻撃↓)</option>
-                            <!-- 他の主要な性格をダミーとして配置 -->
                             <option value="さみしがり">さみしがり (攻撃↑ 防御↓)</option>
                             <option value="やんちゃ">やんちゃ (攻撃↑ 特防↓)</option>
                             <option value="おっとり">おっとり (特攻↑ 防御↓)</option>
@@ -109,7 +109,6 @@
                             <option value="のうてんき">のうてんき (防御↑ 特防↓)</option>
                             <option value="おとなしい">おとなしい (特防↑ 防御↓)</option>
                             <option value="せっかち">せっかち (素早さ↑ 防御↓)</option>
-                            <option value="ようき">ようき (素早さ↑ 特攻↓)</option>
                             <option value="ゆうかん">ゆうかん (攻撃↑ 素早さ↓)</option>
                             <option value="のんき">のんき (防御↑ 素早さ↓)</option>
                             <option value="れいせい">れいせい (特攻↑ 素早さ↓)</option>
@@ -280,107 +279,16 @@
 
         </div>
 
-        <!-- 下段: 技構成エリア -->
+        <!-- 下段: 技構成エリア (Web Component <move-slot> で生成) -->
         <section class="moves-section">
             <div class="card registration-card">
                 <h2 class="card-section-title">技構成</h2>
                 
                 <div class="moves-grid">
-                    <!-- 技1 -->
-                    <div class="move-row">
-                        <div class="move-select-wrapper">
-                            <label for="move-1" class="move-label">技1</label>
-                            <select id="move-1" class="form-select">
-                                <option value="">技を選択...</option>
-                                <option value="かえんほうしゃ" selected>かえんほうしゃ</option>
-                                <option value="りゅうせいぐん">りゅうせいぐん</option>
-                                <option value="エアスラッシュ">エアスラッシュ</option>
-                                <option value="おにび">おにび</option>
-                                <option value="10まんボルト">10まんボルト</option>
-                                <option value="ハイドロポンプ">ハイドロポンプ</option>
-                                <option value="じしん">じしん</option>
-                                <option value="インファイト">インファイト</option>
-                                <option value="とんぼがえり">とんぼがえり</option>
-                                <option value="つるぎのまい">つるぎのまい</option>
-                            </select>
-                        </div>
-                        <div class="move-meta">
-                            <span class="badge badge-fire">ほのお</span>
-                            <span class="move-power">威力: <strong class="power-val">90</strong></span>
-                        </div>
-                    </div>
-
-                    <!-- 技2 -->
-                    <div class="move-row">
-                        <div class="move-select-wrapper">
-                            <label for="move-2" class="move-label">技2</label>
-                            <select id="move-2" class="form-select">
-                                <option value="" selected>技を選択...</option>
-                                <option value="かえんほうしゃ">かえんほうしゃ</option>
-                                <option value="りゅうせいぐん">りゅうせいぐん</option>
-                                <option value="エアスラッシュ">エアスラッシュ</option>
-                                <option value="おにび">おにび</option>
-                                <option value="10まんボルト">10まんボルト</option>
-                                <option value="ハイドロポンプ">ハイドロポンプ</option>
-                                <option value="じしん">じしん</option>
-                                <option value="インファイト">インファイト</option>
-                                <option value="とんぼがえり">とんぼがえり</option>
-                                <option value="つるぎのまい">つるぎのまい</option>
-                            </select>
-                        </div>
-                        <div class="move-meta">
-                            <span class="badge badge-none">--</span>
-                            <span class="move-power">威力: <span class="power-val">--</span></span>
-                        </div>
-                    </div>
-
-                    <!-- 技3 -->
-                    <div class="move-row">
-                        <div class="move-select-wrapper">
-                            <label for="move-3" class="move-label">技3</label>
-                            <select id="move-3" class="form-select">
-                                <option value="" selected>技を選択...</option>
-                                <option value="かえんほうしゃ">かえんほうしゃ</option>
-                                <option value="りゅうせいぐん">りゅうせいぐん</option>
-                                <option value="エアスラッシュ">エアスラッシュ</option>
-                                <option value="おにび">おにび</option>
-                                <option value="10まんボルト">10まんボルト</option>
-                                <option value="ハイドロポンプ">ハイドロポンプ</option>
-                                <option value="じしん">じしん</option>
-                                <option value="インファイト">インファイト</option>
-                                <option value="とんぼがえり">とんぼがえり</option>
-                                <option value="つるぎのまい">つるぎのまい</option>
-                            </select>
-                        </div>
-                        <div class="move-meta">
-                            <span class="badge badge-none">--</span>
-                            <span class="move-power">威力: <span class="power-val">--</span></span>
-                        </div>
-                    </div>
-
-                    <!-- 技4 -->
-                    <div class="move-row">
-                        <div class="move-select-wrapper">
-                            <label for="move-4" class="move-label">技4</label>
-                            <select id="move-4" class="form-select">
-                                <option value="" selected>技を選択...</option>
-                                <option value="かえんほうしゃ">かえんほうしゃ</option>
-                                <option value="りゅうせいぐん">りゅうせいぐん</option>
-                                <option value="エアスラッシュ">エアスラッシュ</option>
-                                <option value="おにび">おにび</option>
-                                <option value="10まんボルト">10まんボルト</option>
-                                <option value="ハイドロポンプ">ハイドロポンプ</option>
-                                <option value="じしん">じしん</option>
-                                <option value="インファイト">インファイト</option>
-                                <option value="とんぼがえり">とんぼがえり</option>
-                                <option value="つるぎのまい">つるぎのまい</option>
-                            </select>
-                        </div>
-                        <div class="move-meta">
-                            <span class="badge badge-none">--</span>
-                            <span class="move-power">威力: <span class="power-val">--</span></span>
-                        </div>
-                    </div>
+                    <move-slot index="1" value="かえんほうしゃ"></move-slot>
+                    <move-slot index="2"></move-slot>
+                    <move-slot index="3"></move-slot>
+                    <move-slot index="4"></move-slot>
                 </div>
             </div>
         </section>

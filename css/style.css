@@ -19,6 +19,12 @@
   --type-water: #51a8ff;
   --type-grass: #51e67e;
   --type-flying: #97a8ff;
+  --type-dragon: #a27efa;
+  --type-electric: #f7d02c;
+  --type-ground: #e2bf65;
+  --type-fighting: #c22e28;
+  --type-bug: #a6b91a;
+  --type-normal: #a8a77a;
   --type-none: #a0aec0;
 }
 
@@ -438,6 +444,12 @@ main.registration-main {
 .badge-water { background-color: var(--type-water); }
 .badge-grass { background-color: var(--type-grass); }
 .badge-flying { background-color: var(--type-flying); }
+.badge-dragon { background-color: var(--type-dragon); }
+.badge-electric { background-color: var(--type-electric); color: #2c3e50; }
+.badge-ground { background-color: var(--type-ground); }
+.badge-fighting { background-color: var(--type-fighting); }
+.badge-bug { background-color: var(--type-bug); }
+.badge-normal { background-color: var(--type-normal); }
 .badge-none { background-color: var(--type-none); }
 
 /* 能力ポイントと実数値テーブル */
@@ -586,7 +598,7 @@ main.registration-main {
   font-weight: 800;
 }
 
-/* 技構成エリア */
+/* 技構成エリア & Web Components カスタムエレメント */
 .moves-section {
   margin-bottom: 24px;
 }
@@ -602,6 +614,10 @@ main.registration-main {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+}
+
+move-slot {
+  display: block;
 }
 
 .move-row {
@@ -703,7 +719,6 @@ footer {
   border-color: var(--primary-color);
   color: var(--primary-color);
   background-color: var(--primary-light);
-  color: var(--primary-color);
 }
 
 .btn-toggle svg {
