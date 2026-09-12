@@ -1,0 +1,107 @@
+[
+  {
+    "id": 38,
+    "name": "すてみタックル",
+    "type": "ノーマル",
+    "power": 120,
+    "category": "物理"
+  },
+  {
+    "id": 46,
+    "name": "ほえる",
+    "type": "ノーマル",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 59,
+    "name": "ふぶき",
+    "type": "こおり",
+    "power": 110,
+    "category": "特殊"
+  },
+  {
+    "id": 89,
+    "name": "じしん",
+    "type": "じめん",
+    "power": 100,
+    "category": "物理"
+  },
+  {
+    "id": 247,
+    "name": "シャドーボール",
+    "type": "ゴースト",
+    "power": 80,
+    "category": "特殊"
+  },
+  {
+    "id": 269,
+    "name": "ちょうはつ",
+    "type": "あく",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 271,
+    "name": "トリック",
+    "type": "エスパー",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 349,
+    "name": "りゅうのまい",
+    "type": "ドラゴン",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 407,
+    "name": "ドラゴンダイブ",
+    "type": "ドラゴン",
+    "power": 100,
+    "category": "物理"
+  },
+  {
+    "id": 417,
+    "name": "わるだくみ",
+    "type": "あく",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 420,
+    "name": "こおりのつぶて",
+    "type": "こおり",
+    "power": 40,
+    "category": "物理"
+  },
+  {
+    "id": 446,
+    "name": "ステルスロック",
+    "type": "いわ",
+    "power": "",
+    "category": "変化"
+  },
+  {
+    "id": 586,
+    "name": "フリーズドライ",
+    "type": "こおり",
+    "power": 70,
+    "category": "特殊"
+  },
+  {
+    "id": 827,
+    "name": "クイックターン",
+    "type": "みず",
+    "power": 60,
+    "category": "物理"
+  },
+  {
+    "id": 889,
+    "name": "ゴールドラッシュ",
+    "type": "はがね",
+    "power": 120,
+    "category": "特殊"
+  }
+]
