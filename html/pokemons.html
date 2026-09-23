@@ -16,6 +16,7 @@
     </script>
     <script src="js/main.js" defer></script>
     <script type="module" src="../js/components/move-slot.js"></script>
+    <script src="../js/pokemon-registration.js" defer></script>
 
     <!-- PWA用のマニフェスト定義 -->
     <link rel="manifest" href="manifest.json">
@@ -51,18 +52,11 @@
         <!-- 検索・ポケモン名入力エリア -->
         <section class="search-section">
             <div class="search-box">
-                <input type="text" id="pokemon-name-input" placeholder="ポケモン名を入力... (例: リザードン)" list="pokemon-suggestions">
+                <input type="text" id="pokemon-name-input" placeholder="ポケモン名を入力... (例: ラグラージ)" list="pokemon-suggestions">
                 <datalist id="pokemon-suggestions">
-                    <option value="リザードン">
-                    <option value="ピカチュウ">
-                    <option value="ドラパルト">
-                    <option value="ハバタクカミ">
-                    <option value="カイリュー">
-                    <option value="サーフゴー">
-                    <option value="ウーラオス">
-                    <option value="パオジアン">
+                    <!-- pokemons.json から動的に自動挿入されます -->
                 </datalist>
-                <button type="button" class="btn-primary" onclick="alert('検索ボタンがクリックされました（モック表示）');">検索</button>
+                <button type="button" class="btn-primary" onclick="alert('検索ボタンがクリックされました');">検索</button>
             </div>
         </section>
 
@@ -85,8 +79,7 @@
                     <div class="form-group-row">
                         <span class="form-label-inline">タイプ:</span>
                         <div class="type-badges">
-                            <span class="badge badge-fire">ほのお</span>
-                            <span class="badge badge-flying">ひこう</span>
+                            <span class="badge badge-none">--</span>
                         </div>
                     </div>
 
@@ -120,8 +113,6 @@
                         <label for="pokemon-ability">特性</label>
                         <select id="pokemon-ability" class="form-select">
                             <option value="">特性を選択...</option>
-                            <option value="もうか" selected>もうか</option>
-                            <option value="サンパワー">サンパワー</option>
                         </select>
                     </div>
 
@@ -131,7 +122,7 @@
                             <option value="">持ち物を選択...</option>
                             <option value="きあいのタスキ">きあいのタスキ</option>
                             <option value="こだわりハチマキ">こだわりハチマキ</option>
-                            <option value="こだわりメガネ" selected>こだわりメガネ</option>
+                            <option value="こだわりメガネ">こだわりメガネ</option>
                             <option value="こだわりスカーフ">こだわりスカーフ</option>
                             <option value="とつげきチョッキ">とつげきチョッキ</option>
                             <option value="いのちのたま">いのちのたま</option>
@@ -167,7 +158,7 @@
                                 <!-- HP -->
                                 <tr>
                                     <td class="status-name">HP</td>
-                                    <td class="status-base">100</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -179,12 +170,12 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real highlight-value">175</td>
+                                    <td class="status-real highlight-value">--</td>
                                 </tr>
                                 <!-- 攻撃 -->
                                 <tr>
                                     <td class="status-name">攻撃</td>
-                                    <td class="status-base">90</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -196,12 +187,12 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real">110</td>
+                                    <td class="status-real">--</td>
                                 </tr>
                                 <!-- 防御 -->
                                 <tr>
                                     <td class="status-name">防御</td>
-                                    <td class="status-base">80</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -213,12 +204,12 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real">100</td>
+                                    <td class="status-real">--</td>
                                 </tr>
                                 <!-- 特攻 -->
                                 <tr>
                                     <td class="status-name">特攻</td>
-                                    <td class="status-base">110</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -230,12 +221,12 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real">130</td>
+                                    <td class="status-real">--</td>
                                 </tr>
                                 <!-- 特防 -->
                                 <tr>
                                     <td class="status-name">特防</td>
-                                    <td class="status-base">90</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -247,12 +238,12 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real">110</td>
+                                    <td class="status-real">--</td>
                                 </tr>
                                 <!-- 素早さ -->
                                 <tr>
                                     <td class="status-name">素早さ</td>
-                                    <td class="status-base">60</td>
+                                    <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
                                             <button type="button" class="btn-ap-adjust">-</button>
@@ -264,7 +255,7 @@
                                         <button type="button" class="btn-preset">0</button>
                                         <button type="button" class="btn-preset">32</button>
                                     </td>
-                                    <td class="status-real">80</td>
+                                    <td class="status-real">--</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -285,7 +276,7 @@
                 <h2 class="card-section-title">技構成</h2>
                 
                 <div class="moves-grid">
-                    <move-slot index="1" value="かえんほうしゃ"></move-slot>
+                    <move-slot index="1"></move-slot>
                     <move-slot index="2"></move-slot>
                     <move-slot index="3"></move-slot>
                     <move-slot index="4"></move-slot>

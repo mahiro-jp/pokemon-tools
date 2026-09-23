@@ -1,31 +1,69 @@
-// 技マスタデータ (技名 => { タイプ名, バッジCSSクラス, 威力 })
-export const MOVE_DATA = {
-  'かえんほうしゃ': { type: 'ほのお', badgeClass: 'badge-fire', power: '90' },
-  'りゅうせいぐん': { type: 'ドラゴン', badgeClass: 'badge-dragon', power: '130' },
-  'エアスラッシュ': { type: 'ひこう', badgeClass: 'badge-flying', power: '75' },
-  'おにび': { type: 'ほのお', badgeClass: 'badge-fire', power: '--' },
-  '10まんボルト': { type: 'でんき', badgeClass: 'badge-electric', power: '90' },
-  'ハイドロポンプ': { type: 'みず', badgeClass: 'badge-water', power: '110' },
-  'じしん': { type: 'じめん', badgeClass: 'badge-ground', power: '100' },
-  'インファイト': { type: 'かくとう', badgeClass: 'badge-fighting', power: '120' },
-  'とんぼがえり': { type: 'むし', badgeClass: 'badge-bug', power: '70' },
-  'つるぎのまい': { type: 'ノーマル', badgeClass: 'badge-normal', power: '--' }
+// 技データの動的読み込みと <move-slot> カスタムエレメント定義
+let movesDataCache = null;
+
+// タイプごとのCSSバッジクラスのマッピング
+export const TYPE_BADGE_MAP = {
+  'ほのお': 'badge-fire',
+  'みず': 'badge-water',
+  'くさ': 'badge-grass',
+  'ひこう': 'badge-flying',
+  'ドラゴン': 'badge-dragon',
+  'でんき': 'badge-electric',
+  'じめん': 'badge-ground',
+  'かくとう': 'badge-fighting',
+  'むし': 'badge-bug',
+  'ノーマル': 'badge-normal',
+  'こおり': 'badge-ice',
+  'あく': 'badge-dark',
+  'エスパー': 'badge-psychic',
+  'いわ': 'badge-rock',
+  'はがね': 'badge-steel',
+  'ゴースト': 'badge-ghost',
+  'フェアリー': 'badge-fairy',
+  'どく': 'badge-poison'
 };
 
+// moves.json を非同期読み込みする関数
+export async function loadMovesData() {
+  if (movesDataCache) return movesDataCache;
+  try {
+    const paths = ['data/moves.json', '../data/moves.json', '/pokemon-tools/data/moves.json'];
+    let response = null;
+    for (const path of paths) {
+      try {
+        response = await fetch(path);
+        if (response.ok) break;
+      } catch (e) {}
+    }
+    if (response && response.ok) {
+      movesDataCache = await response.json();
+    } else {
+      movesDataCache = [];
+    }
+  } catch (error) {
+    console.error('moves.json の読み込みに失敗しました:', error);
+    movesDataCache = [];
+  }
+  return movesDataCache;
+}
+
 export class MoveSlot extends HTMLElement {
-  connectedCallback() {
-    const index = this.getAttribute('index') || '1';
-    const initialValue = this.getAttribute('value') || '';
+  async connectedCallback() {
+    this.index = this.getAttribute('index') || '1';
+    this.initialValue = this.getAttribute('value') || '';
+
+    // 技データのロード
+    const moves = await loadMovesData();
 
     // HTML構造の設定
     this.innerHTML = `
       <div class="move-row">
         <div class="move-select-wrapper">
-          <label for="move-${index}" class="move-label">技${index}</label>
-          <select id="move-${index}" class="form-select move-select">
+          <label for="move-${this.index}" class="move-label">技${this.index}</label>
+          <select id="move-${this.index}" class="form-select move-select">
             <option value="">技を選択...</option>
-            ${Object.keys(MOVE_DATA).map(move => `
-              <option value="${move}" ${move === initialValue ? 'selected' : ''}>${move}</option>
+            ${moves.map(m => `
+              <option value="${m.name}" ${m.name === this.initialValue ? 'selected' : ''}>${m.name}</option>
             `).join('')}
           </select>
         </div>
@@ -36,27 +74,31 @@ export class MoveSlot extends HTMLElement {
       </div>
     `;
 
-    // 内部エレメントの参照保持
     this.selectEl = this.querySelector('.move-select');
     this.badgeEl = this.querySelector('.badge');
     this.powerEl = this.querySelector('.power-val');
 
-    // 変更イベントリスナーの登録
-    this.selectEl.addEventListener('change', () => this.updateMeta());
+    this.movesMap = new Map(moves.map(m => [m.name, m]));
 
-    // 初期表示の反映
+    this.selectEl.addEventListener('change', () => this.updateMeta());
     this.updateMeta();
   }
 
-  // 選択された技に応じてタイプバッジと威力を動的に切り替え
   updateMeta() {
-    const selectedMove = this.selectEl.value;
-    const data = MOVE_DATA[selectedMove];
+    if (!this.selectEl) return;
+    const selectedName = this.selectEl.value;
+    const moveInfo = this.movesMap ? this.movesMap.get(selectedName) : null;
 
-    if (data) {
-      this.badgeEl.textContent = data.type;
-      this.badgeEl.className = `badge ${data.badgeClass}`;
-      this.powerEl.textContent = data.power;
+    if (moveInfo) {
+      const typeName = moveInfo.type || '--';
+      const badgeClass = TYPE_BADGE_MAP[typeName] || 'badge-none';
+      const powerDisplay = (moveInfo.power !== "" && moveInfo.power !== null && moveInfo.power !== undefined) 
+        ? moveInfo.power 
+        : '--';
+
+      this.badgeEl.textContent = typeName;
+      this.badgeEl.className = `badge ${badgeClass}`;
+      this.powerEl.textContent = powerDisplay;
     } else {
       this.badgeEl.textContent = '--';
       this.badgeEl.className = 'badge badge-none';
@@ -64,7 +106,6 @@ export class MoveSlot extends HTMLElement {
     }
   }
 
-  // 外部(親スクリプト)からの値取得・設定用インターフェース
   get value() {
     return this.selectEl ? this.selectEl.value : '';
   }
@@ -73,9 +114,13 @@ export class MoveSlot extends HTMLElement {
     if (this.selectEl) {
       this.selectEl.value = val;
       this.updateMeta();
+    } else {
+      this.setAttribute('value', val);
     }
   }
 }
 
 // カスタムエレメント <move-slot> の登録
-customElements.define('move-slot', MoveSlot);
+if (!customElements.get('move-slot')) {
+  customElements.define('move-slot', MoveSlot);
+}
