@@ -14,9 +14,11 @@
             document.documentElement.classList.add('dark-mode');
         }
     </script>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="../js/app-header.js"></script>
+    <script type="module" src="../js/app-footer.js"></script>
     <script type="module" src="../js/components/move-slot.js"></script>
-    <script src="../js/pokemon-registration.js" defer></script>
+    <script type="module" src="../js/pokemon-registration.js"></script>
+    <script src="../js/main.js" defer></script>
 
     <!-- PWA用のマニフェスト定義 -->
     <link rel="manifest" href="manifest.json">
@@ -30,23 +32,7 @@
 </head>
 <body>
 
-    <header>
-        <div class="header-container justify-between">
-            <a href="../index.html" class="header-back-link">
-                <svg class="icon-back" viewBox="0 0 24 24">
-                    <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-                </svg>
-                <span>戻る</span>
-            </a>
-            <div class="header-title-group">
-                <svg class="header-logo" viewBox="0 0 24 24">
-                    <use href="../images/sprite.svg#logo"></use>
-                </svg>
-                <h1>ポケモン登録</h1>
-            </div>
-            <div style="width: 56px;"></div> <!-- 左右バランス用スペース -->
-        </div>
-    </header>
+    <app-header title="ポケモン登録" show-back="true" back-url="../index.html"></app-header>
 
     <main class="registration-main">
         <!-- 検索・ポケモン名入力エリア -->
@@ -270,7 +256,7 @@
 
         </div>
 
-        <!-- 下段: 技構成エリア (Web Component <move-slot> で生成) -->
+        <!-- 下段: 技構成エリア (Web Component <move-slot> で動的生成) -->
         <section class="moves-section">
             <div class="card registration-card">
                 <h2 class="card-section-title">技構成</h2>
@@ -292,21 +278,7 @@
 
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <button class="btn-toggle" id="dark-mode-toggle">
-                <!-- 月アイコン -->
-                <svg class="icon-moon" viewBox="0 0 24 24">
-                    <use href="../images/sprite.svg#icon-moon"></use>
-                </svg>
-                <!-- 太陽アイコン -->
-                <svg class="icon-sun" viewBox="0 0 24 24">
-                    <use href="../images/sprite.svg#icon-sun"></use>
-                </svg>
-                <span>ダークモード</span>
-            </button>
-        </div>
-    </footer>
+    <app-footer></app-footer>
 
 </body>
 </html>
