@@ -6,19 +6,23 @@
     <title>ポケモン登録 - ポケモンツール</title>
     <link rel="stylesheet" href="../css/style.css">
 
+    <!-- 描画前のダークモード高速判定（チラつき防止） -->
     <script>
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDarkMode = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-        if (isDarkMode) {
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             document.documentElement.classList.add('dark-mode');
         }
     </script>
-    <script type="module" src="../js/app-header.js"></script>
-    <script type="module" src="../js/app-footer.js"></script>
+    <script src="js/main.js" defer></script>
+
+    <!-- Web Components コンポーネント定義 -->
+    <script type="module" src="../js/components/app-header.js"></script>
+    <script type="module" src="../js/components/app-footer.js"></script>
     <script type="module" src="../js/components/move-slot.js"></script>
+
+    <!-- ポケモン登録画面ロジック -->
     <script type="module" src="../js/pokemon-registration.js"></script>
-    <script src="../js/main.js" defer></script>
 
     <!-- PWA用のマニフェスト定義 -->
     <link rel="manifest" href="manifest.json">
@@ -198,7 +202,7 @@
                                     <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
-                                            <button type="button" class="btn-ap-adjust">-</button>
+                                            <button type="button" class="btn-ap-adjust btn-minus">-</button>
                                             <input type="number" class="ap-input" value="0" min="0" max="32">
                                             <button type="button" class="btn-ap-adjust">+</button>
                                         </div>

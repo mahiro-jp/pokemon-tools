@@ -6,17 +6,19 @@
     <title>ポケモンツール</title>
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- 描画前のダークモード高速判定（チラつき防止） -->
     <script>
         const savedTheme = localStorage.getItem('theme');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDarkMode = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-        if (isDarkMode) {
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             document.documentElement.classList.add('dark-mode');
         }
     </script>
-    <script type="module" src="js/app-header.js"></script>
-    <script type="module" src="js/app-footer.js"></script>
     <script src="js/main.js" defer></script>
+
+    <!-- Web Components コンポーネント定義 -->
+    <script type="module" src="js/components/app-header.js"></script>
+    <script type="module" src="js/components/app-footer.js"></script>
 
     <!-- PWA用のマニフェスト定義 -->
     <link rel="manifest" href="manifest.json">
@@ -41,7 +43,6 @@
             <!-- ポケモン登録 -->
             <a href="html/pokemons.html" class="card">
                 <div class="card-icon">
-                    <!-- プラスアイコン -->
                     <svg viewBox="0 0 24 24">
                         <use href="images/sprite.svg#icon-plus"></use>
                     </svg>
@@ -55,7 +56,6 @@
             <!-- パーティ作成 -->
             <a href="html/parties.html" class="card" onclick="event.preventDefault(); alert('パーティ作成画面（/parties）へ遷移します（モック）');">
                 <div class="card-icon">
-                    <!-- リストアイコン -->
                     <svg viewBox="0 0 24 24">
                         <use href="images/sprite.svg#icon-list"></use>
                     </svg>
@@ -69,7 +69,6 @@
             <!-- ダメージ計算 -->
             <a href="html/damage-calculator.html" class="card" onclick="event.preventDefault(); alert('ダメージ計算画面（/damage-calculator）へ遷移します（モック）');">
                 <div class="card-icon">
-                    <!-- 計算機アイコン -->
                     <svg viewBox="0 0 24 24">
                         <use href="images/sprite.svg#icon-calculator"></use>
                     </svg>

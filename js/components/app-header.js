@@ -28,4 +28,6 @@ export class AppHeader extends HTMLElement {
   }
 }
 
-customElements.define('app-header', AppHeader);
+if (!customElements.get('app-header')) {
+  customElements.define('app-header', AppHeader);
+}

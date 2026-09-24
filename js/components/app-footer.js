@@ -3,7 +3,7 @@ export class AppFooter extends HTMLElement {
     this.innerHTML = `
       <footer>
         <div class="footer-container">
-          <button class="btn-toggle" id="dark-mode-toggle">
+          <button class="btn-toggle" id="dark-mode-toggle" type="button">
             <svg class="icon-moon" viewBox="0 0 24 24">
               <use href="images/sprite.svg#icon-moon"></use>
             </svg>
@@ -41,4 +41,6 @@ export class AppFooter extends HTMLElement {
   }
 }
 
-customElements.define('app-footer', AppFooter);
+if (!customElements.get('app-footer')) {
+  customElements.define('app-footer', AppFooter);
+}
