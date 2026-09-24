@@ -14,7 +14,7 @@
             document.documentElement.classList.add('dark-mode');
         }
     </script>
-    <script src="js/main.js" defer></script>
+    <script src="../js/main.js" defer></script>
 
     <!-- Web Components コンポーネント定義 -->
     <script type="module" src="../js/components/app-header.js"></script>
@@ -25,7 +25,7 @@
     <script type="module" src="../js/pokemon-registration.js"></script>
 
     <!-- PWA用のマニフェスト定義 -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#e3350d">
 
     <!-- iOS (Safari) 向けのインストール設定 -->
@@ -52,12 +52,12 @@
 
         <!-- 2カラムレイアウト -->
         <div class="dashboard-grid">
-            
+
             <!-- 左カラム: 基本情報・画像 -->
             <div class="dashboard-col left-col">
                 <div class="card registration-card">
                     <h2 class="card-section-title">基本情報</h2>
-                    
+
                     <!-- 画像プレースホルダー -->
                     <div class="pokemon-image-placeholder">
                         <svg class="image-icon" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@
             <div class="dashboard-col right-col">
                 <div class="card registration-card">
                     <h2 class="card-section-title">能力ポイントと実数値 (Lv.50)</h2>
-                    
+
                     <div class="status-table-container">
                         <table class="status-table">
                             <thead>
@@ -202,7 +202,7 @@
                                     <td class="status-base">--</td>
                                     <td class="status-ap-cell">
                                         <div class="ap-spinner">
-                                            <button type="button" class="btn-ap-adjust btn-minus">-</button>
+                                            <button type="button" class="btn-ap-adjust">-</button>
                                             <input type="number" class="ap-input" value="0" min="0" max="32">
                                             <button type="button" class="btn-ap-adjust">+</button>
                                         </div>
@@ -264,7 +264,7 @@
         <section class="moves-section">
             <div class="card registration-card">
                 <h2 class="card-section-title">技構成</h2>
-                
+
                 <div class="moves-grid">
                     <move-slot index="1"></move-slot>
                     <move-slot index="2"></move-slot>

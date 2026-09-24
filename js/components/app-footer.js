@@ -1,14 +1,16 @@
 export class AppFooter extends HTMLElement {
   connectedCallback() {
+    const spritePath = this.getAttribute('sprite-path') || (window.location.pathname.includes('/html/') ? '../images/sprite.svg' : 'images/sprite.svg');
+
     this.innerHTML = `
       <footer>
         <div class="footer-container">
           <button class="btn-toggle" id="dark-mode-toggle" type="button">
             <svg class="icon-moon" viewBox="0 0 24 24">
-              <use href="images/sprite.svg#icon-moon"></use>
+              <use href="${spritePath}#icon-moon"></use>
             </svg>
             <svg class="icon-sun" viewBox="0 0 24 24">
-              <use href="images/sprite.svg#icon-sun"></use>
+              <use href="${spritePath}#icon-sun"></use>
             </svg>
             <span>ダークモード</span>
           </button>

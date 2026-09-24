@@ -3,6 +3,7 @@ export class AppHeader extends HTMLElement {
     const title = this.getAttribute('title') || 'ポケモンツール';
     const showBack = this.getAttribute('show-back') === 'true';
     const backUrl = this.getAttribute('back-url') || 'index.html';
+    const spritePath = this.getAttribute('sprite-path') || (window.location.pathname.includes('/html/') ? '../images/sprite.svg' : 'images/sprite.svg');
 
     this.innerHTML = `
       <header>
@@ -17,7 +18,7 @@ export class AppHeader extends HTMLElement {
           ` : ''}
           <div class="header-title-group">
             <svg class="header-logo" viewBox="0 0 24 24">
-              <use href="images/sprite.svg#logo"></use>
+              <use href="${spritePath}#logo"></use>
             </svg>
             <h1>${title}</h1>
           </div>
