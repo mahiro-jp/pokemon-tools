@@ -1,0 +1,119 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", "Noto Sans JP", sans-serif;
+  color: #1f2937;
+  background: #f3f6fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+.site-header {
+  padding: 1.25rem clamp(1.25rem, 5vw, 4rem);
+  background: #ffffff;
+  border-bottom: 1px solid #e5eaf2;
+}
+
+.site-title {
+  color: #1d4ed8;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.main-content {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: 3rem 1.25rem;
+}
+
+.welcome-card {
+  width: min(100%, 42rem);
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  background: #ffffff;
+  border: 1px solid #e5eaf2;
+  border-radius: 1.25rem;
+  box-shadow: 0 1.25rem 3rem rgb(31 41 55 / 8%);
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.3;
+}
+
+.description {
+  margin: 1rem 0 1.75rem;
+  color: #5b6575;
+  line-height: 1.8;
+}
+
+.action-button {
+  padding: 0.8rem 1.25rem;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  background: #2563eb;
+  border: 0;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.action-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.action-button:focus-visible,
+.site-title:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.result {
+  min-height: 1.5em;
+  margin: 1.25rem 0 0;
+  color: #374151;
+}
+
+.site-footer {
+  padding: 1rem 1.25rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

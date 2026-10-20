@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="HTML、CSS、JavaScriptで作ったWebアプリのひな形です。">
+    <title>Webアプリのひな形</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="./">Webアプリのひな形</a>
+    </header>
+
+    <main class="main-content">
+      <section class="welcome-card" aria-labelledby="welcome-title">
+        <p class="eyebrow">HTML · CSS · JavaScript</p>
+        <h1 id="welcome-title">ここからアプリを作りましょう</h1>
+        <p class="description">
+          このページは、HTML・CSS・JavaScriptだけで動くシンプルなスタート地点です。
+          下のボタンを押して、JavaScriptの動作を確認できます。
+        </p>
+        <button class="action-button" id="check-button" type="button">
+          動作を確認する
+        </button>
+        <p class="result" id="result" role="status" aria-live="polite">
+          ボタンを押すと、ここに結果が表示されます。
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>HTML・CSS・JavaScriptで作成</p>
+    </footer>
+  </body>
+</html>
