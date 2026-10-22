@@ -1,8 +1,6 @@
 :root {
   color-scheme: light;
   font-family: "Segoe UI", "Noto Sans JP", sans-serif;
-  color: #252a34;
-  background: #f4f5f7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --page-bg: #f4f5f7;
@@ -12,14 +10,16 @@
   --border: #e4e7ec;
   --accent: #e63d4f;
   --accent-dark: #c92e40;
+  --accent-contrast: #ffffff;
   --soft-accent: #fff0f1;
   --shadow: 0 0.75rem 2rem rgb(31 41 55 / 7%);
+  --shadow-hover: 0 1rem 2.25rem rgb(31 41 55 / 12%);
+  color: var(--text);
+  background: var(--page-bg);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  color: #f3f4f6;
-  background: #202329;
   --page-bg: #202329;
   --surface: #2b3038;
   --text: #f3f4f6;
@@ -27,8 +27,10 @@
   --border: #414752;
   --accent: #ff6675;
   --accent-dark: #ff8290;
+  --accent-contrast: #252a34;
   --soft-accent: #493037;
   --shadow: 0 0.75rem 2rem rgb(0 0 0 / 20%);
+  --shadow-hover: 0 1rem 2.25rem rgb(0 0 0 / 32%);
 }
 
 * {
@@ -157,7 +159,7 @@ h1 {
 .tool-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
-  box-shadow: 0 1rem 2.25rem rgb(31 41 55 / 12%);
+  box-shadow: var(--shadow-hover);
 }
 
 .card-icon {
@@ -228,7 +230,7 @@ h1 {
   justify-content: center;
   margin-top: 1.75rem;
   padding: 0.65rem 1.25rem;
-  color: #ffffff;
+  color: var(--accent-contrast);
   font-weight: 700;
   background: var(--accent);
   border-radius: 0.65rem;
