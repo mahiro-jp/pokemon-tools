@@ -1,0 +1,138 @@
+[
+  {
+    "id": 445,
+    "name": "ガブリアス",
+    "image": "./images/pokemons/445.png",
+    "types": ["ドラゴン", "じめん"],
+    "baseStats": {
+      "hp": 108,
+      "atk": 130,
+      "def": 95,
+      "spa": 80,
+      "spd": 85,
+      "spe": 102
+    },
+    "abilities": [
+      { "id": "sand-veil", "name": "すながくれ" },
+      { "id": "rough-skin", "name": "さめはだ" }
+    ],
+    "learnset": [
+      "earthquake",
+      "outrage",
+      "swords-dance",
+      "iron-head",
+      "rock-tomb",
+      "protect"
+    ],
+    "megaForm": {
+      "name": "メガガブリアス",
+      "image": "./images/pokemons/445-mega.png",
+      "types": ["ドラゴン", "じめん"],
+      "baseStats": {
+        "hp": 108,
+        "atk": 170,
+        "def": 115,
+        "spa": 120,
+        "spd": 95,
+        "spe": 92
+      },
+      "abilities": [
+        { "id": "sand-force", "name": "すなのちから" }
+      ]
+    }
+  },
+  {
+    "id": 373,
+    "name": "ボーマンダ",
+    "image": "./images/pokemons/373.png",
+    "types": ["ドラゴン", "ひこう"],
+    "baseStats": {
+      "hp": 95,
+      "atk": 135,
+      "def": 80,
+      "spa": 110,
+      "spd": 80,
+      "spe": 100
+    },
+    "abilities": [
+      { "id": "intimidate", "name": "いかく" },
+      { "id": "moxie", "name": "じしんかじょう" }
+    ],
+    "learnset": [
+      "double-edge",
+      "outrage",
+      "earthquake",
+      "dragon-dance",
+      "roost",
+      "hyper-voice",
+      "protect"
+    ],
+    "megaForm": {
+      "name": "メガボーマンダ",
+      "image": "./images/pokemons/373-mega.png",
+      "types": ["ドラゴン", "ひこう"],
+      "baseStats": {
+        "hp": 95,
+        "atk": 145,
+        "def": 130,
+        "spa": 120,
+        "spd": 90,
+        "spe": 120
+      },
+      "abilities": [
+        { "id": "aerilate", "name": "スカイスキン" }
+      ]
+    }
+  },
+  {
+    "id": 292,
+    "name": "ヌケニン",
+    "image": "./images/pokemons/292.png",
+    "types": ["むし", "ゴースト"],
+    "baseStats": {
+      "hp": 1,
+      "atk": 90,
+      "def": 45,
+      "spa": 30,
+      "spd": 30,
+      "spe": 40
+    },
+    "abilities": [
+      { "id": "wonder-guard", "name": "ふしぎなまもり" }
+    ],
+    "learnset": [
+      "shadow-sneak",
+      "x-scissor",
+      "will-o-wisp",
+      "swords-dance",
+      "protect"
+    ],
+    "megaForm": null
+  },
+  {
+    "id": 1000,
+    "name": "サーフゴー",
+    "image": "./images/pokemons/1000.png",
+    "types": ["はがね", "ゴースト"],
+    "baseStats": {
+      "hp": 87,
+      "atk": 60,
+      "def": 95,
+      "spa": 133,
+      "spd": 91,
+      "spe": 84
+    },
+    "abilities": [
+      { "id": "good-as-gold", "name": "おうごんのからだ" }
+    ],
+    "learnset": [
+      "make-it-rain",
+      "shadow-ball",
+      "nasty-plot",
+      "recover",
+      "thunderbolt",
+      "protect"
+    ],
+    "megaForm": null
+  }
+]

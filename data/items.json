@@ -1,0 +1,12 @@
+[
+  { "id": "mega-stone", "name": "メガストーン" },
+  { "id": "focus-sash", "name": "きあいのタスキ" },
+  { "id": "choice-band", "name": "こだわりハチマキ" },
+  { "id": "choice-specs", "name": "こだわりメガネ" },
+  { "id": "choice-scarf", "name": "こだわりスカーフ" },
+  { "id": "life-orb", "name": "いのちのたま" },
+  { "id": "leftovers", "name": "たべのこし" },
+  { "id": "assault-vest", "name": "とつげきチョッキ" },
+  { "id": "heavy-duty-boots", "name": "あつぞこブーツ" },
+  { "id": "sitrus-berry", "name": "オボンのみ" }
+]

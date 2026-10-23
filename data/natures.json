@@ -1,0 +1,23 @@
+[
+  { "id": "serious", "name": "まじめ", "up": null, "down": null },
+  { "id": "lonely", "name": "さみしがり", "up": "atk", "down": "def" },
+  { "id": "adamant", "name": "いじっぱり", "up": "atk", "down": "spa" },
+  { "id": "naughty", "name": "やんちゃ", "up": "atk", "down": "spd" },
+  { "id": "brave", "name": "ゆうかん", "up": "atk", "down": "spe" },
+  { "id": "bold", "name": "ずぶとい", "up": "def", "down": "atk" },
+  { "id": "impish", "name": "わんぱく", "up": "def", "down": "spa" },
+  { "id": "lax", "name": "のうてんき", "up": "def", "down": "spd" },
+  { "id": "relaxed", "name": "のんき", "up": "def", "down": "spe" },
+  { "id": "modest", "name": "ひかえめ", "up": "spa", "down": "atk" },
+  { "id": "mild", "name": "おっとり", "up": "spa", "down": "def" },
+  { "id": "rash", "name": "うっかりや", "up": "spa", "down": "spd" },
+  { "id": "quiet", "name": "れいせい", "up": "spa", "down": "spe" },
+  { "id": "calm", "name": "おだやか", "up": "spd", "down": "atk" },
+  { "id": "gentle", "name": "おとなしい", "up": "spd", "down": "def" },
+  { "id": "careful", "name": "しんちょう", "up": "spd", "down": "spa" },
+  { "id": "sassy", "name": "なまいき", "up": "spd", "down": "spe" },
+  { "id": "timid", "name": "おくびょう", "up": "spe", "down": "atk" },
+  { "id": "hasty", "name": "せっかち", "up": "spe", "down": "def" },
+  { "id": "jolly", "name": "ようき", "up": "spe", "down": "spa" },
+  { "id": "naive", "name": "むじゃき", "up": "spe", "down": "spd" }
+]

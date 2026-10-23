@@ -1,0 +1,20 @@
+[
+  { "id": "earthquake", "name": "じしん", "type": "じめん", "category": "物理", "power": 100, "accuracy": 100 },
+  { "id": "outrage", "name": "げきりん", "type": "ドラゴン", "category": "物理", "power": 120, "accuracy": 100 },
+  { "id": "swords-dance", "name": "つるぎのまい", "type": "ノーマル", "category": "変化", "power": null, "accuracy": null },
+  { "id": "iron-head", "name": "アイアンヘッド", "type": "はがね", "category": "物理", "power": 80, "accuracy": 100 },
+  { "id": "rock-tomb", "name": "がんせきふうじ", "type": "いわ", "category": "物理", "power": 60, "accuracy": 95 },
+  { "id": "make-it-rain", "name": "ゴールドラッシュ", "type": "はがね", "category": "特殊", "power": 120, "accuracy": 100 },
+  { "id": "shadow-ball", "name": "シャドーボール", "type": "ゴースト", "category": "特殊", "power": 80, "accuracy": 100 },
+  { "id": "nasty-plot", "name": "わるだくみ", "type": "あく", "category": "変化", "power": null, "accuracy": null },
+  { "id": "recover", "name": "じこさいせい", "type": "ノーマル", "category": "変化", "power": null, "accuracy": null },
+  { "id": "thunderbolt", "name": "10まんボルト", "type": "でんき", "category": "特殊", "power": 90, "accuracy": 100 },
+  { "id": "shadow-sneak", "name": "かげうち", "type": "ゴースト", "category": "物理", "power": 40, "accuracy": 100 },
+  { "id": "x-scissor", "name": "シザークロス", "type": "むし", "category": "物理", "power": 80, "accuracy": 100 },
+  { "id": "will-o-wisp", "name": "おにび", "type": "ほのお", "category": "変化", "power": null, "accuracy": 85 },
+  { "id": "protect", "name": "まもる", "type": "ノーマル", "category": "変化", "power": null, "accuracy": null },
+  { "id": "roost", "name": "はねやすめ", "type": "ひこう", "category": "変化", "power": null, "accuracy": null },
+  { "id": "double-edge", "name": "すてみタックル", "type": "ノーマル", "category": "物理", "power": 120, "accuracy": 100 },
+  { "id": "dragon-dance", "name": "りゅうのまい", "type": "ドラゴン", "category": "変化", "power": null, "accuracy": null },
+  { "id": "hyper-voice", "name": "ハイパーボイス", "type": "ノーマル", "category": "特殊", "power": 90, "accuracy": 100 }
+]
